@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
-import { View, Text, TextInput } from "react-native";
+import React, { useContext, useState } from "react";
+import { View, Text, TextInput, Alert } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
-
+import { Auth } from "../../HOC/auth";
 const Verification = ({ navigation }) => {
+  const [number] = useContext(Auth);
+  const [code, setCode] = useState("");
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <View
@@ -16,6 +18,9 @@ const Verification = ({ navigation }) => {
           justifyContent: "center",
           alignItems: "center",
         }}
+        placeholder="Enter Code "
+        onChangeText={(code) => setCode(code)}
+        defaultValue={code}
       >
         <TouchableOpacity
           onPress={() => navigation.goBack()}
@@ -44,8 +49,7 @@ const Verification = ({ navigation }) => {
         <View style={{ alignItems: "center" }}>
           <Text>Verification PIN</Text>
           <Text style={{ textAlign: "center", width: 200 }}>
-            Enter the verification code{"\n"} we just sent you on{"\n"}{" "}
-            0540710554
+            Enter the verification code{"\n"} we just sent you on{"\n"} 12345
           </Text>
         </View>
         <View style={{ width: "100%" }}>
@@ -60,7 +64,20 @@ const Verification = ({ navigation }) => {
             keyboardType="number-pad"
           />
           <TouchableOpacity
-            onPress={() => navigation.push("general")}
+            onPress={() => {
+              if (code == "12345" && number === "0558691496") {
+                navigation.push("general");
+              } else {
+                Alert.alert(
+                  "Authentication",
+                  "Incorrect Information Provided",
+                  {
+                    text: "OK",
+                    onPress: () => navigation.goBack(),
+                  }
+                );
+              }
+            }}
             style={{
               height: 40,
               backgroundColor: "#000",

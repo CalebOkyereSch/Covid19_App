@@ -9,19 +9,6 @@ import BottomTab from "./navigation/bottomTabScreen";
 import AfterVerification from "./navigation/afterVerification";
 import VerificationStack from "./navigation/verificationStack";
 
-const defaultOption = {
-  watchQuery: {
-    fetchPolicy: "cache-and-network",
-    errorPolicy: "ignore",
-  },
-  query: {
-    fetchPolicy: "network-only",
-    errorPolicy: "all",
-  },
-  mutate: {
-    errorPolicy: "all",
-  },
-};
 const client = new ApolloClient({
   uri: "https://signalc.herokuapp.com/GraphQL",
   cache: new InMemoryCache(),
@@ -36,21 +23,17 @@ export const countries = new ApolloClient({
 
 export default function App() {
   const [log, setLog] = useState(false);
+  const [number, setNumber] = useState("");
+
   const authentication = useMemo(() => {
-    return {
-      signIn: () => {
-        setLog(true);
-      },
-    };
+    return [setLog, number, setNumber];
   });
   return (
     <Auth.Provider value={authentication}>
       <ApolloProvider client={client}>
-        {/* <ApolloProvider client={countries}> */}
         <NavigationContainer>
           {log ? <AfterVerification /> : <VerificationStack />}
         </NavigationContainer>
-        {/* </ApolloProvider> */}
       </ApolloProvider>
     </Auth.Provider>
   );

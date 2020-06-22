@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { View, Text, ImageBackground, TextInput } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { Auth } from "../../HOC/auth";
 
 const CoverScreen = ({ navigation }) => {
+  const [text, setText] = useState("");
+  const [setNumber] = useContext(Auth);
   return (
     <View style={{ flex: 1 }}>
       <ImageBackground
@@ -39,6 +42,8 @@ const CoverScreen = ({ navigation }) => {
                 Join the effort by well-meaning Africans using technology to
                 show{"\n"}
                 down and eventually halt the spread of COVID-19
+                {"\n"}
+                Enter this number 0558691496
               </Text>
             </View>
           </View>
@@ -52,10 +57,16 @@ const CoverScreen = ({ navigation }) => {
                 color: "#999",
                 backgroundColor: "#fff",
               }}
+              placeholder="Phone Number"
               keyboardType="number-pad"
+              onChangeText={(text) => setText(text)}
+              defaultValue={text}
             />
             <TouchableOpacity
-              onPress={() => navigation.push("verification")}
+              onPress={() => {
+                setNumber(text);
+                navigation.push("verification");
+              }}
               style={{
                 height: 35,
                 backgroundColor: "#677180",

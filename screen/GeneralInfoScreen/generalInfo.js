@@ -4,7 +4,7 @@ import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Auth } from "../../HOC/auth";
 const GeneralInfo = () => {
-  const { signIn } = useContext(Auth);
+  const [setLog] = useContext(Auth);
   return (
     <View style={{ flex: 1 }}>
       <View
@@ -92,7 +92,7 @@ const GeneralInfo = () => {
       </View>
       <View style={{ flex: 1, justifyContent: "center" }}>
         <TouchableOpacity
-          onPress={() => signIn()}
+          onPress={() => setLog(true)}
           style={{
             marginHorizontal: 30,
             height: 40,

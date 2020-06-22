@@ -5,11 +5,11 @@ const Vital = ({ navigation }) => {
   return (
     <View style={{ flex: 1, backgroundColor: "#fff" }}>
       <View style={{ height: 250 }}>
-        {/* <LottieView
+        <LottieView
           source={require("../../assets/vital-loader.json")}
           autoPlay
           loop
-        ></LottieView> */}
+        ></LottieView>
       </View>
       <View style={{ alignItems: "center" }}>
         <Text style={{ marginVertical: 10 }}>

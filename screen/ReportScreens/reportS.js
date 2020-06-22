@@ -12,11 +12,11 @@ const CaseReport = ({ navigation }) => {
       }}
     >
       <View style={{ height: 200, width: 350 }}>
-        {/* <LottieView
+        <LottieView
           source={require("../../assets/report-loader.json")}
           autoPlay
           loop
-        ></LottieView> */}
+        ></LottieView>
       </View>
       <View>
         <Text style={{ marginVertical: 10 }}>
