@@ -8,6 +8,7 @@ const SettingComponent = ({ navigation, msg, topic, nav }) => {
     <View
       style={{
         flexDirection: "row",
+        alignItems: "center",
         height: 90,
         backgroundColor: "#fff",
         alignItems: "center",
@@ -23,7 +24,7 @@ const SettingComponent = ({ navigation, msg, topic, nav }) => {
         <Text style={{ fontSize: 12, fontWeight: "normal" }}>{msg}</Text>
       </View>
       <TouchableOpacity
-        style={{ flex: 2 }}
+        style={{ flex: 2, justifyContent: "center" }}
         onPress={() => navigation.navigate(`${nav}`)}
       >
         <AntDesign name="right" size={20} />

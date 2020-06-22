@@ -1,7 +1,31 @@
 import React from "react";
 import { View, Text } from "react-native";
 import AfterVitalItem from "./afterVitalItem";
-const AfterVital = () => {
+
+const AfterVital = (props) => {
+  const hype = (val) => {
+    let anwser;
+    switch (val) {
+      case 0:
+        anwser = "none";
+        break;
+      case 1:
+        anwser = "mild";
+        break;
+      case 2:
+        anwser = "mild";
+        break;
+      case 3:
+        anwser = "semi";
+        break;
+      case 4:
+        anwser = "high";
+        break;
+      default:
+        anwser = "none";
+    }
+    return anwser;
+  };
   return (
     <View
       style={{
@@ -24,9 +48,24 @@ const AfterVital = () => {
           marginVertical: 5,
         }}
       >
-        <AfterVitalItem />
-        <AfterVitalItem />
-        <AfterVitalItem />
+        <AfterVitalItem
+          color="#95cc8b"
+          sickness="Aches"
+          value={props.aches}
+          serious={hype(props.aches)}
+        />
+        <AfterVitalItem
+          color="#f21616"
+          sickness="Breath Shortness"
+          value={props.shortness}
+          serious={hype(props.shortness)}
+        />
+        <AfterVitalItem
+          color="#13e0eb"
+          sickness="Fever"
+          value={props.fever}
+          serious={hype(props.fever)}
+        />
       </View>
       <View
         style={{
@@ -35,9 +74,24 @@ const AfterVital = () => {
           marginVertical: 5,
         }}
       >
-        <AfterVitalItem />
-        <AfterVitalItem />
-        <AfterVitalItem />
+        <AfterVitalItem
+          color="#139ceb"
+          sickness="Dry Cough"
+          value={props.cough}
+          serious={hype(props.cough)}
+        />
+        <AfterVitalItem
+          color="#f7b602"
+          sickness="Tiredness"
+          value={props.tired}
+          serious={hype(props.tired)}
+        />
+        <AfterVitalItem
+          color="#ac82d1"
+          sickness="Sore Throat"
+          value={props.sore}
+          serious={hype(props.sore)}
+        />
       </View>
     </View>
   );

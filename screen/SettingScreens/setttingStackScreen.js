@@ -1,6 +1,4 @@
 import React from "react";
-import { View, Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Head } from "../../component/headers";
 import Settings from "./settingScreen";
@@ -11,6 +9,8 @@ import PersonalDetailScreen from "./personalDetailScreen";
 import AudioScreen from "./audioScreen";
 import PrivacyPolicyScreen from "./privacyPolicyScreen";
 import ShareScreen from "./shareScreen";
+import CloseButton from "../../component/closeButton";
+import Mapper from "./mapScreen";
 const Stack = createStackNavigator();
 
 const SettingScreen = () => {
@@ -24,37 +24,74 @@ const SettingScreen = () => {
       <Stack.Screen
         name="sAssessment"
         component={SelfAssesmentScreen}
-        options={{ headerTitle: () => <Head title="Self Assesment" /> }}
+        options={({ navigation }) => ({
+          headerTitle: () => <Head title="Self Assessment" />,
+          headerLeft: "",
+          headerRight: () => <CloseButton navigation={navigation} />,
+        })}
       />
       <Stack.Screen
         name="faq"
         component={FAQScreen}
-        options={{ headerTitle: () => <Head title="FAQs" /> }}
+        options={({ navigation }) => ({
+          headerTitle: () => <Head title="FAQs" />,
+          headerLeft: "",
+          headerRight: () => <CloseButton navigation={navigation} />,
+        })}
       />
       <Stack.Screen
         name="tCenters"
         component={TestCenterScreen}
-        options={{ headerTitle: () => <Head title="Test Centers" /> }}
+        options={({ navigation }) => ({
+          headerTitle: () => <Head title="Test Centers" />,
+          headerLeft: "",
+          headerRight: () => <CloseButton navigation={navigation} />,
+        })}
       />
       <Stack.Screen
         name="pDetails"
         component={PersonalDetailScreen}
-        options={{ headerTitle: () => <Head title="Personal Details" /> }}
+        options={({ navigation }) => ({
+          headerTitle: () => <Head title="Personal Details" />,
+          headerLeft: "",
+          headerRight: () => <CloseButton navigation={navigation} />,
+        })}
       />
       <Stack.Screen
         name="audio"
         component={AudioScreen}
-        options={{ headerTitle: () => <Head title="Audio" /> }}
+        options={({ navigation }) => ({
+          headerTitle: () => <Head title="Audio" />,
+          headerLeft: "",
+          headerRight: () => <CloseButton navigation={navigation} />,
+        })}
       />
       <Stack.Screen
         name="pPolicy"
         component={PrivacyPolicyScreen}
-        options={{ headerTitle: () => <Head title="Privacy Policy" /> }}
+        options={({ navigation }) => ({
+          headerTitle: () => <Head title="Privacy Policy" />,
+          headerLeft: "",
+          headerRight: () => <CloseButton navigation={navigation} />,
+        })}
       />
       <Stack.Screen
         name="share"
         component={ShareScreen}
-        options={{ headerTitle: () => <Head title="Share" /> }}
+        options={({ navigation }) => ({
+          headerTitle: () => <Head title="Share" />,
+          headerLeft: "",
+          headerRight: () => <CloseButton navigation={navigation} />,
+        })}
+      />
+      <Stack.Screen
+        name="Map"
+        component={Mapper}
+        options={({ navigation }) => ({
+          headerTitle: () => <Head title="" />,
+          headerLeft: "",
+          headerRight: () => <CloseButton navigation={navigation} />,
+        })}
       />
     </Stack.Navigator>
   );

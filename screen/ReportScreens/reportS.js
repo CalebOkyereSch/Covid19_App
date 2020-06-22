@@ -1,15 +1,23 @@
 import React from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
-
+import LottieView from "lottie-react-native";
 const CaseReport = ({ navigation }) => {
   return (
     <View
-      style={{ flex: 1, justifyContent: "space-around", alignItems: "center" }}
+      style={{
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#fff",
+      }}
     >
-      <Image
-        source={require("../../assets/images/1.jpg")}
-        style={{ width: 70, height: 70 }}
-      />
+      <View style={{ height: 200, width: 350 }}>
+        {/* <LottieView
+          source={require("../../assets/report-loader.json")}
+          autoPlay
+          loop
+        ></LottieView> */}
+      </View>
       <View>
         <Text style={{ marginVertical: 10 }}>
           You have not made any case reports

@@ -7,7 +7,7 @@ const TestCenterComp = (props) => {
       style={{
         paddingHorizontal: 20,
         paddingVertical: 10,
-        borderBottomWidth: 0.1,
+        borderBottomWidth: 0.5,
         borderColor: "#ddd",
       }}
     >
@@ -18,8 +18,8 @@ const TestCenterComp = (props) => {
           marginVertical: 15,
         }}
       >
-        <Text style={{ fontWeight: "bold", font: 12 }}>{props.topic}</Text>
-        <Text style={{ font: 12 }}>{props.date} </Text>
+        <Text style={{ fontWeight: "bold", fontSize: 12 }}>{props.topic}</Text>
+        <Text style={{ fontSize: 12 }}>{props.date} </Text>
       </View>
       <View
         style={{
@@ -28,9 +28,9 @@ const TestCenterComp = (props) => {
           marginVertical: 15,
         }}
       >
-        <Text style={{ font: 11 }}>{props.location} </Text>
+        <Text style={{ fontSize: 11 }}>{props.location} </Text>
         <TouchableOpacity onPress={() => props.func}>
-          <Text style={{ font: 12, color: "#f0f" }}>Get Directions </Text>
+          <Text style={{ fontSize: 12, color: "#f0f" }}>Get Directions </Text>
         </TouchableOpacity>
       </View>
     </View>

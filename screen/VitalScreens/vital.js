@@ -1,11 +1,15 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
-
+import LottieView from "lottie-react-native";
 const Vital = ({ navigation }) => {
   return (
     <View style={{ flex: 1, backgroundColor: "#fff" }}>
       <View style={{ height: 250 }}>
-        <Text>Animations</Text>
+        {/* <LottieView
+          source={require("../../assets/vital-loader.json")}
+          autoPlay
+          loop
+        ></LottieView> */}
       </View>
       <View style={{ alignItems: "center" }}>
         <Text style={{ marginVertical: 10 }}>

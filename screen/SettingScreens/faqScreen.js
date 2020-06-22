@@ -76,10 +76,10 @@ const FAQScreen = () => {
   ];
 
   return (
-    <View style={{ flex: 1, background: "#fff" }}>
+    <View style={{ flex: 1, backgroundColor: "#fff" }}>
       <ScrollView>
         {question.map((item) => (
-          <Case topic={item.topic} msg={item.msg} />
+          <Case topic={item.topic} msg={item.msg} key={item.value} />
         ))}
       </ScrollView>
     </View>
