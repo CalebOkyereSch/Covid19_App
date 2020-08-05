@@ -58,6 +58,7 @@ const Verification = ({ navigation }) => {
               marginHorizontal: 30,
               marginVertical: 10,
             }}
+            s
             keyboardType="number-pad"
           />
           <TouchableOpacity

@@ -11,10 +11,12 @@ import { news } from "../../data";
 const countryData = gql`
   {
     country(name: "Ghana") {
-      result {
-        cases
-        deaths
+      name
+      mostRecent {
+        date(format: "yyyy-MM-dd")
+        confirmed
         recovered
+        deaths
       }
     }
   }
@@ -30,8 +32,9 @@ const HomeS = () => {
     );
   } else {
     return (
-      <View style={{ flex: 1, minHeight: 300 }}>
+      <View style={{ flex: 1, minHeight: 300, backgroundColor: "#fff" }}>
         <ScrollView style={{ flex: 1 }}>
+          {console.log(data)}
           <View style={{ height: 280, justifyContent: "flex-start" }}>
             {isEmpty(data) ? (
               <ScrollView style={{ flex: 1 }} horizontal={true}>
@@ -54,17 +57,17 @@ const HomeS = () => {
             ) : (
               <ScrollView style={{ flex: 1 }} horizontal={true}>
                 <HomeCard
-                  value={data.country.result.cases}
+                  value={data.country.mostRecent.confirmed}
                   feeds="Confirmed Cases"
                   pic={require("../../assets/images/5.jpg")}
                 />
                 <HomeCard
-                  value={data.country.result.recovered}
+                  value={data.country.mostRecent.recovered}
                   feeds="Recovered"
                   pic={require("../../assets/images/8.jpg")}
                 />
                 <HomeCard
-                  value={data.country.result.deaths}
+                  value={data.country.mostRecent.deaths}
                   feeds="Death"
                   pic={require("../../assets/images/9.jpg")}
                 />

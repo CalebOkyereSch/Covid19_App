@@ -42,17 +42,30 @@ export const HomeCard = ({ value, feeds, pic }) => {
 
 export const News = (props) => {
   return (
-    <View style={{ marginVertical: 20, minHeight: 300 }}>
+    <View
+      style={{
+        marginVertical: 20,
+        minHeight: 300,
+        backgroundColor: "#fff",
+        borderBottomWidth: 0.3,
+        borderBottomColor: "#ddd",
+      }}
+    >
       <Text style={{ marginBottom: 15, fontSize: 15, fontWeight: "700" }}>
         {" "}
         {props.title}
       </Text>
       <Image
-        style={{ width: 350, height: 250, alignSelf: "center" }}
+        style={{
+          width: 350,
+          height: 250,
+          alignSelf: "center",
+          marginBottom: 5,
+        }}
         source={props.image}
         resizeMode="cover"
       />
-      <Text>{props.body}</Text>
+      <Text style={{ paddingBottom: 30 }}>{props.body}</Text>
     </View>
   );
 };

@@ -16,7 +16,7 @@ const client = new ApolloClient({
 });
 
 export const countries = new ApolloClient({
-  uri: "https://covid19-graphql.netlify.app/",
+  uri: "https://covid19-graphql.now.sh/",
   cache: new InMemoryCache(),
   // defaultOptions: {},
 });
