@@ -16,6 +16,7 @@ import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
 import { useQuery } from "@apollo/react-hooks";
 import { countries } from "../../App";
+import isEmpty from "../../isEmpty";
 const countryData = gql`
   query {
     countries {
@@ -28,10 +29,7 @@ const countryData = gql`
   }
 `;
 const ProfileScreen = () => {
-  const { loading, error, data } = useQuery(
-    countryData,
-    (client = { countries })
-  );
+  const { loading, error, data } = useQuery(countryData, { client: countries });
   const [check, setCheck] = useState("");
   const [isVisible, setVisible] = useState(false);
   const [isVisible2, setVisible2] = useState(false);
@@ -45,7 +43,7 @@ const ProfileScreen = () => {
   });
   // const [country, setCountry] = useState([]);
 
-  const findId = (id) => {
+  const findId = (id, data) => {
     data.countries.forEach((item) => {
       if (item.countryInfo._id == id) {
         setVisible(false);
@@ -59,7 +57,7 @@ const ProfileScreen = () => {
       }
     });
   };
-  const findId2 = (id) => {
+  const findId2 = (id, data) => {
     data.countries.forEach((item) => {
       if (item.countryInfo._id == id) {
         setVisible2(false);
@@ -207,7 +205,7 @@ const ProfileScreen = () => {
                   width: 300,
                 }}
               >
-                {loading ? (
+                {loading || isEmpty(data) ? (
                   <View
                     style={{
                       flex: 1,
@@ -223,7 +221,7 @@ const ProfileScreen = () => {
                       <View key={index}>
                         <TouchableOpacity
                           onPress={() => {
-                            findId(item.countryInfo._id);
+                            findId(item.countryInfo._id, data);
                           }}
                           style={{
                             flexDirection: "row",
@@ -267,6 +265,7 @@ const ProfileScreen = () => {
                 <Text>{to.country}</Text>
               </TouchableOpacity>
               <Modal
+                presentationStyle={"pageSheet"}
                 animationType={"slide"}
                 transparent={false}
                 visible={isVisible2}
@@ -282,7 +281,7 @@ const ProfileScreen = () => {
                     width: 300,
                   }}
                 >
-                  {loading ? (
+                  {loading || isEmpty(data) ? (
                     <View
                       style={{
                         flex: 1,
@@ -298,7 +297,7 @@ const ProfileScreen = () => {
                         <View key={index}>
                           <TouchableOpacity
                             onPress={() => {
-                              findId2(item.countryInfo._id);
+                              findId2(item.countryInfo._id, data);
                             }}
                             style={{
                               flexDirection: "row",

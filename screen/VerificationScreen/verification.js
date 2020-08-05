@@ -18,9 +18,6 @@ const Verification = ({ navigation }) => {
           justifyContent: "center",
           alignItems: "center",
         }}
-        placeholder="Enter Code "
-        onChangeText={(code) => setCode(code)}
-        defaultValue={code}
       >
         <TouchableOpacity
           onPress={() => navigation.goBack()}
@@ -64,19 +61,22 @@ const Verification = ({ navigation }) => {
             keyboardType="number-pad"
           />
           <TouchableOpacity
+            // onPress={() => {
+            //   if (code == "12345" && number === "0558691496") {
+            //     navigation.push("general");
+            //   } else {
+            //     Alert.alert(
+            //       "Authentication",
+            //       "Incorrect Information Provided",
+            //       {
+            //         text: "OK",
+            //         onPress: () => navigation.goBack(),
+            //       }
+            //     );
+            //   }
+            // }}
             onPress={() => {
-              if (code == "12345" && number === "0558691496") {
-                navigation.push("general");
-              } else {
-                Alert.alert(
-                  "Authentication",
-                  "Incorrect Information Provided",
-                  {
-                    text: "OK",
-                    onPress: () => navigation.goBack(),
-                  }
-                );
-              }
+              navigation.push("general");
             }}
             style={{
               height: 40,
