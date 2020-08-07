@@ -7,20 +7,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { countries } from "../../App";
 import isEmpty from "../../isEmpty";
 import { news } from "../../data";
-
-const countryData = gql`
-  {
-    country(name: "Ghana") {
-      name
-      mostRecent {
-        date(format: "yyyy-MM-dd")
-        confirmed
-        recovered
-        deaths
-      }
-    }
-  }
-`;
+import { countryData } from "../../controllers/graphql/queries/queries";
 
 const HomeS = () => {
   const { loading, error, data } = useQuery(countryData, { client: countries });

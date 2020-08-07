@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import LottieView from "lottie-react-native";
+import { report } from "../../data";
+import isEmpty from "../../isEmpty";
 const CaseReport = ({ navigation }) => {
+  useEffect(() => {
+    if (!isEmpty(report)) {
+      navigation.push("mReportItem");
+    }
+  });
+
   return (
     <View
       style={{

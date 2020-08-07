@@ -13,7 +13,11 @@ const ReportScreen = () => {
       <Stack.Screen
         name="cReport"
         component={CaseReport}
-        options={{ headerTitle: () => <Head title="Case Reports" /> }}
+        options={({ navigation }) => ({
+          headerTitle: () => <Head title="Case Reports" />,
+          headerLeft: "",
+          headerRight: "",
+        })}
       />
       <Stack.Screen
         name="mReport"

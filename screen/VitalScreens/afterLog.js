@@ -1,36 +1,20 @@
 import React from "react";
 import {
   View,
-  Text,
   ScrollView,
   TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import AfterVital from "../../component/afterVitals";
-import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
-import { user1 } from "../../controllers/config";
 import { useQuery } from "@apollo/react-hooks";
+import { vitalsData } from "../../controllers/graphql/queries/queries";
+import isEmpty from "../../isEmpty";
 
-const vitalsData = gql`
-  {
-    vitals(filter: { user: "5e92383292b9310017c84789" }) {
-      _id
-      vitals {
-        dryCough
-        fever
-        soreThroat
-        aches
-        shortnessOfBreath
-        tiredness
-      }
-    }
-  }
-`;
 const AfterLog = ({ navigation }) => {
-  const { loading, error, data } = useQuery(vitalsData);
-  if (loading) {
+  const { loading, data } = useQuery(vitalsData);
+  if (loading || isEmpty(data)) {
     return (
       <View
         style={{
@@ -43,7 +27,6 @@ const AfterLog = ({ navigation }) => {
       </View>
     );
   } else {
-    console.log(data);
     return (
       <View style={{ flex: 1, backgroundColor: "#fff" }}>
         <ScrollView>
@@ -56,6 +39,7 @@ const AfterLog = ({ navigation }) => {
               cough={item.vitals.dryCough}
               tired={item.vitals.tiredness}
               sore={item.vitals.soreThroat}
+              date={new Date(item.createdAt).toDateString()}
             />
           ))}
         </ScrollView>

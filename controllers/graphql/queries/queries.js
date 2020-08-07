@@ -1,105 +1,48 @@
-import gql from 'graphql-tag'
-
-const CountryQuery = `
-query {
- countries {
-     country
-     countryInfo {
-         _id
-         lat
-         long
-         flag
-         iso3
-         iso2
-     }
-     continent
-     result {
-         tests
-         cases
-         todayCases
-         deaths
-         todayDeaths
-         recovered
-         active
-         critical
-         casesPerOneMillion
-         deathsPerOneMillion
-         testsPerOneMillion
-         updated
-     }
- }
-}
-
-
-`;
-
-const getCountry = `
-query {
-    countries {
-        country
-        countryInfo {
-            _id
-            lat
-            long
-            flag
-            iso3
-            iso2
-        }
-        
-    }
-  }
-`
-
-const getGlobal = `
-query{
-    globalTotal {
-        affectedCountries
-        tests
-        cases
-        todayCases
-        deaths
-        todayDeaths
-        recovered
-        active
-        critical
-        casesPerOneMillion
-        deathsPerOneMillion
-        testsPerOneMillion
-        updated
-    }
-  }
-  
-`
-const getGhana = `
-query {
-        country(name:"Ghana"){
-            country
-            result{
-                cases
-                recovered
-                deaths
-                updated
-                active
-                critical
-                tests
-                updated
-            }
-        }
-        
-    }
-`
+import gql from "graphql-tag";
 
 const getTestingCenters = gql`
   query {
-      testingSites {
-          _id,
-          name
-          placesName
-          location {
-              coordinates
-          },
-          createdAt
+    testingSites {
+      _id
+      name
+      placesName
+      location {
+        coordinates
       }
+      createdAt
+    }
   }
-`
-export { getCountry, getGlobal, getGhana,CountryQuery, getTestingCenters }
+`;
+
+const vitalsData = gql`
+  {
+    vitals(filter: { user: "5e92383292b9310017c84789" }) {
+      _id
+      vitals {
+        dryCough
+        fever
+        soreThroat
+        aches
+        shortnessOfBreath
+        tiredness
+      }
+      createdAt
+    }
+  }
+`;
+
+const countryData = gql`
+  {
+    country(name: "Ghana") {
+      name
+      mostRecent {
+        date(format: "yyyy-MM-dd")
+        confirmed
+        recovered
+        deaths
+      }
+    }
+  }
+`;
+
+export { vitalsData, getTestingCenters, countryData };

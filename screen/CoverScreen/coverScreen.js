@@ -5,7 +5,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { Auth } from "../../HOC/auth";
 
 const CoverScreen = ({ navigation }) => {
-  const [text, setText] = useState("");
+  const [tex, setText] = useState("");
   const [setNumber] = useContext(Auth);
   return (
     <View style={{ flex: 1 }}>
@@ -60,11 +60,10 @@ const CoverScreen = ({ navigation }) => {
               placeholder="Phone Number"
               keyboardType="number-pad"
               onChangeText={(text) => setText(text)}
-              defaultValue={text}
             />
             <TouchableOpacity
               onPress={() => {
-                setNumber(text);
+                setNumber(tex);
                 navigation.push("verification");
               }}
               style={{

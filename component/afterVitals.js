@@ -38,9 +38,8 @@ const AfterVital = (props) => {
         justifyContent: "center",
       }}
     >
-      <Text style={{ fontWeight: "700", marginVertical: 5 }}>
-        Thu Apr 16 2020
-      </Text>
+      <Text style={{ fontWeight: "700", marginVertical: 5 }}>{props.date}</Text>
+
       <View
         style={{
           flexDirection: "row",

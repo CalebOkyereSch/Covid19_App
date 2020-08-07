@@ -1,20 +1,20 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-const CaseReport = () => {
+const CaseReport = (props) => {
   return (
     <View
       style={{
         height: 120,
         width: "100%",
-        flexDirection: "row",
         padding: 20,
         backgroundColor: "#fff",
         borderBottomWidth: 0.5,
         borderColor: "#eee",
+        marginVertical: 5,
       }}
     >
-      <View style={{ flex: 7 }}>
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <Text
           style={{
             marginBottom: 10,
@@ -23,15 +23,15 @@ const CaseReport = () => {
             color: "#000",
           }}
         >
-          Self
+          {props.title}
         </Text>
-        <Text style={{ fontWeight: "normal", fontSize: 12, color: "#000" }}>
-          My head aches and I'm running a temperature 0244123456
-        </Text>
+
+        <Text style={{ fontSize: 13 }}>{props.date}</Text>
       </View>
-      <View style={{ flex: 3 }}>
-        <Text style={{ fontSize: 13 }}>Thr Apr 16 2020</Text>
-      </View>
+
+      <Text style={{ fontWeight: "normal", fontSize: 12, color: "#000" }}>
+        {props.body}
+      </Text>
     </View>
   );
 };

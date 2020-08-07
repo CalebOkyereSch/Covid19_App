@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -9,29 +9,18 @@ import {
   ScrollView,
   ActivityIndicator,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-// import { TextInput } from 'react-native-gesture-handler';
+import CountryModal from "../../component/countryModal";
 import { Ionicons } from "@expo/vector-icons";
 import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
 import { useQuery } from "@apollo/react-hooks";
 import { countries } from "../../App";
+import { countryFlag } from "../../controllers/graphql/queries/queries";
 import isEmpty from "../../isEmpty";
-const countryData = gql`
-  query {
-    countries {
-      country
-      countryInfo {
-        _id
-        flag
-      }
-    }
-  }
-`;
 const ProfileScreen = () => {
-  const { loading, error, data } = useQuery(countryData, { client: countries });
+  const { loading, data } = useQuery(countryFlag, { client: countries });
   const [check, setCheck] = useState("");
-  const [isVisible, setVisible] = useState(false);
+  const [openKey, setKey] = useState(false);
   const [isVisible2, setVisible2] = useState(false);
   const [from, setFrom] = useState({
     country: "Ghana",
@@ -41,9 +30,8 @@ const ProfileScreen = () => {
     country: "Ghana",
     flag: "https://disease.sh/assets/img/flags/gh.png",
   });
-  // const [country, setCountry] = useState([]);
 
-  const findId = (id, data) => {
+  const findId = (id) => {
     data.countries.forEach((item) => {
       if (item.countryInfo._id == id) {
         setVisible(false);
@@ -57,7 +45,7 @@ const ProfileScreen = () => {
       }
     });
   };
-  const findId2 = (id, data) => {
+  const findId2 = (id) => {
     data.countries.forEach((item) => {
       if (item.countryInfo._id == id) {
         setVisible2(false);
@@ -178,70 +166,17 @@ const ProfileScreen = () => {
                   alignItems: "center",
                 }}
                 onPress={() => {
-                  setVisible(!isVisible);
+                  setKey(!openKey);
                 }}
               >
                 <Image
-                  // source={require("../../assets/images/10.jpg")}
                   source={{ uri: from.flag }}
                   style={{ height: 20, width: 30 }}
                 />
                 <Text>{from.country} </Text>
               </TouchableOpacity>
             </View>
-            <Modal
-              animationType={"slide"}
-              transparent={false}
-              visible={isVisible}
-            >
-              <View
-                style={{
-                  justifyContent: "center",
-                  alignItems: "center",
-                  height: 480,
-                  background: "#fff",
-                  borderWidth: 5,
-                  borderColor: "#ddd",
-                  width: 300,
-                }}
-              >
-                {loading || isEmpty(data) ? (
-                  <View
-                    style={{
-                      flex: 1,
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    <ActivityIndicator size="large" />
-                  </View>
-                ) : (
-                  <ScrollView>
-                    {data.countries.map((item, index) => (
-                      <View key={index}>
-                        <TouchableOpacity
-                          onPress={() => {
-                            findId(item.countryInfo._id, data);
-                          }}
-                          style={{
-                            flexDirection: "row",
-                            justifyContent: "space-between",
-                            paddingHorizontal: 10,
-                          }}
-                        >
-                          <Image
-                            source={{ uri: item.countryInfo.flag }}
-                            style={{ width: 20, height: 20 }}
-                            resizeMode="contain"
-                          />
-                          <Text>{item.country} </Text>
-                        </TouchableOpacity>
-                      </View>
-                    ))}
-                  </ScrollView>
-                )}
-              </View>
-            </Modal>
+            <CountryModal openKey={openKey} findId={findId} />
             <View
               style={{
                 borderWidth: 1,
@@ -264,60 +199,7 @@ const ProfileScreen = () => {
                 />
                 <Text>{to.country}</Text>
               </TouchableOpacity>
-              <Modal
-                presentationStyle={"pageSheet"}
-                animationType={"slide"}
-                transparent={false}
-                visible={isVisible2}
-              >
-                <View
-                  style={{
-                    justifyContent: "center",
-                    alignItems: "center",
-                    height: 480,
-                    background: "#fff",
-                    borderWidth: 5,
-                    borderColor: "#ddd",
-                    width: 300,
-                  }}
-                >
-                  {loading || isEmpty(data) ? (
-                    <View
-                      style={{
-                        flex: 1,
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <ActivityIndicator size="large" />
-                    </View>
-                  ) : (
-                    <ScrollView>
-                      {data.countries.map((item, index) => (
-                        <View key={index}>
-                          <TouchableOpacity
-                            onPress={() => {
-                              findId2(item.countryInfo._id, data);
-                            }}
-                            style={{
-                              flexDirection: "row",
-                              justifyContent: "space-between",
-                              paddingHorizontal: 10,
-                            }}
-                          >
-                            <Image
-                              source={{ uri: item.countryInfo.flag }}
-                              style={{ width: 20, height: 20 }}
-                              resizeMode="contain"
-                            />
-                            <Text>{item.country} </Text>
-                          </TouchableOpacity>
-                        </View>
-                      ))}
-                    </ScrollView>
-                  )}
-                </View>
-              </Modal>
+              <CountryModal openKey={isVisible2} findId={findId2} />
             </View>
           </View>
           <View>

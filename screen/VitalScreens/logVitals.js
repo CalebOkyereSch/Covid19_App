@@ -3,32 +3,6 @@ import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import SymptomLog from "../../component/symptomLog";
 
 const LogVitals = ({ navigation }) => {
-  // const [logData, { loading }] = useMutation(logVitals);
-
-  // const HandleLogData = () => {
-  //   logData({
-  //     variables: {
-  //       vitals: {
-  //         dryCough: 2,
-  //         tiredness: 2,
-  //         soreThroat: 2,
-  //         fever: 2,
-  //         aches: 2,
-  //         shortnessOfBreath: 2,
-  //       },
-  //       location: {
-  //         longitute: 123.4,
-  //         lattitude: 3442,
-  //       },
-  //     },
-  //   })
-  //     .then((data) => {
-  //       navigation.navigate("afterLog");
-  //     })
-  //     .catch((e) => {
-  //       console.log(e);
-  //     });
-  // };
   return (
     <View style={{ flex: 1, backgroundColor: "#fff" }}>
       <ScrollView>

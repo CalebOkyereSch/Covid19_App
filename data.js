@@ -33,6 +33,30 @@ export const news = [
   },
 ];
 
+export const report = [
+  {
+    id: 1,
+    title: "Self",
+    date: "3-June-2020",
+    info:
+      "Citizens are advised to provide accurate information on this application to support the government and health sevices in managing and accurately containing the spread of coronavirus",
+  },
+  {
+    id: 2,
+    title: "Other Individual",
+    date: "24-Apr-2020",
+    info:
+      "Citizens are advised to provide accurate information on this application to support the government and health sevices in managing and accurately containing the spread of coronavirus",
+  },
+  {
+    id: 3,
+    title: "Self",
+    date: "1-Apr-2020",
+    info:
+      "Citizens are advised to provide accurate information on this application to support the government and health sevices in managing and accurately containing the spread of coronavirus",
+  },
+];
+
 export const notification = [
   {
     message: "Stay Home",
