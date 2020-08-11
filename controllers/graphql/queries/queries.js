@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 
-const getTestingCenters = gql`
+export const getTestingCenters = gql`
   query {
     testingSites {
       _id
@@ -14,7 +14,7 @@ const getTestingCenters = gql`
   }
 `;
 
-const vitalsData = gql`
+export const vitalsData = gql`
   {
     vitals(filter: { user: "5e92383292b9310017c84789" }) {
       _id
@@ -31,7 +31,7 @@ const vitalsData = gql`
   }
 `;
 
-const countryData = gql`
+export const countryData = gql`
   {
     country(name: "Ghana") {
       name
@@ -44,5 +44,3 @@ const countryData = gql`
     }
   }
 `;
-
-export { vitalsData, getTestingCenters, countryData };

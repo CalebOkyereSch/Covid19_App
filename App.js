@@ -16,7 +16,7 @@ const client = new ApolloClient({
 });
 
 export const countries = new ApolloClient({
-  uri: "https://covid19-graphql.now.sh/",
+  uri: "https://covid19-graphql-bit5wtpnv.vercel.app/",
   cache: new InMemoryCache(),
   // defaultOptions: {},
 });

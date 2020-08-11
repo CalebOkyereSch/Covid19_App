@@ -15,10 +15,10 @@ import { gql } from "apollo-boost";
 import { graphql } from "react-apollo";
 import { useQuery } from "@apollo/react-hooks";
 import { countries } from "../../App";
-import { countryFlag } from "../../controllers/graphql/queries/queries";
+// import { countryFlag } from "../../controllers/graphql/queries/queries";
 import isEmpty from "../../isEmpty";
 const ProfileScreen = () => {
-  const { loading, data } = useQuery(countryFlag, { client: countries });
+  // const { loading, data } = useQuery(countryFlag, { client: countries });
   const [check, setCheck] = useState("");
   const [openKey, setKey] = useState(false);
   const [isVisible2, setVisible2] = useState(false);
@@ -31,34 +31,34 @@ const ProfileScreen = () => {
     flag: "https://disease.sh/assets/img/flags/gh.png",
   });
 
-  const findId = (id) => {
-    data.countries.forEach((item) => {
-      if (item.countryInfo._id == id) {
-        setVisible(false);
-        let name = item.country;
-        let fl = item.countryInfo.flag;
-        let data = {
-          country: name,
-          flag: fl,
-        };
-        setFrom(data);
-      }
-    });
-  };
-  const findId2 = (id) => {
-    data.countries.forEach((item) => {
-      if (item.countryInfo._id == id) {
-        setVisible2(false);
-        let name = item.country;
-        let fl = item.countryInfo.flag;
-        let data = {
-          country: name,
-          flag: fl,
-        };
-        setTo(data);
-      }
-    });
-  };
+  // const findId = (id) => {
+  //   data.countries.forEach((item) => {
+  //     if (item.countryInfo._id == id) {
+  //       setVisible(false);
+  //       let name = item.country;
+  //       let fl = item.countryInfo.flag;
+  //       let data = {
+  //         country: name,
+  //         flag: fl,
+  //       };
+  //       setFrom(data);
+  //     }
+  //   });
+  // };
+  // const findId2 = (id) => {
+  //   data.countries.forEach((item) => {
+  //     if (item.countryInfo._id == id) {
+  //       setVisible2(false);
+  //       let name = item.country;
+  //       let fl = item.countryInfo.flag;
+  //       let data = {
+  //         country: name,
+  //         flag: fl,
+  //       };
+  //       setTo(data);
+  //     }
+  //   });
+  // };
 
   return (
     <View style={{ flex: 1 }}>
@@ -176,7 +176,7 @@ const ProfileScreen = () => {
                 <Text>{from.country} </Text>
               </TouchableOpacity>
             </View>
-            <CountryModal openKey={openKey} findId={findId} />
+            {/* <CountryModal openKey={openKey} findId={findId} /> */}
             <View
               style={{
                 borderWidth: 1,
@@ -199,7 +199,7 @@ const ProfileScreen = () => {
                 />
                 <Text>{to.country}</Text>
               </TouchableOpacity>
-              <CountryModal openKey={isVisible2} findId={findId2} />
+              {/* <CountryModal openKey={isVisible2} findId={findId2} /> */}
             </View>
           </View>
           <View>
@@ -263,4 +263,4 @@ const ProfileScreen = () => {
   );
 };
 
-export default graphql(countryData)(ProfileScreen);
+export default ProfileScreen;
