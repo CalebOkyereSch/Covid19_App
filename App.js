@@ -1,11 +1,8 @@
-import React, { createContext, useMemo, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useMemo, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient, { InMemoryCache } from "apollo-boost";
 import { Auth } from "./HOC/auth";
-import BottomTab from "./navigation/bottomTabScreen";
 import AfterVerification from "./navigation/afterVerification";
 import VerificationStack from "./navigation/verificationStack";
 
@@ -25,9 +22,11 @@ export default function App() {
   const [log, setLog] = useState(false);
   const [number, setNumber] = useState("");
 
-  const authentication = useMemo(() => {
-    return [setLog, number, setNumber];
-  });
+  const authentication = {
+    setLog: setLog,
+    number: number,
+    setNumber: setNumber,
+  };
   return (
     <Auth.Provider value={authentication}>
       <ApolloProvider client={client}>

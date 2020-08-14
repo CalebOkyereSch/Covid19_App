@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import LottieView from "lottie-react-native";
 import { report } from "../../data";
 import isEmpty from "../../isEmpty";
@@ -24,7 +24,7 @@ const CaseReport = ({ navigation }) => {
           source={require("../../assets/report-loader.json")}
           autoPlay
           loop
-        ></LottieView>
+        />
       </View>
       <View>
         <Text style={{ marginVertical: 10 }}>

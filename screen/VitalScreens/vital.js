@@ -19,7 +19,7 @@ const Vital = ({ navigation }) => {
           source={require("../../assets/vital-loader.json")}
           autoPlay
           loop
-        ></LottieView>
+        />
       </View>
       <View style={{ alignItems: "center" }}>
         <Text style={{ marginVertical: 10 }}>

@@ -2,11 +2,21 @@ import React, { useContext, useState } from "react";
 import { View, Text, TextInput, Alert } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { Auth } from "../../HOC/auth";
 const Verification = ({ navigation }) => {
-  const [number] = useContext(Auth);
+  const { number } = useContext(Auth);
   const [code, setCode] = useState("");
+
+  const signIn = () => {
+    if (code == "12345" && number === "0558691496") {
+      navigation.push("general");
+    } else {
+      Alert.alert("Authentication", "Incorrect Passcode ... Code is  12345", {
+        text: "OK",
+        onPress: () => navigation.goBack(),
+      });
+    }
+  };
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <View
@@ -58,27 +68,12 @@ const Verification = ({ navigation }) => {
               marginHorizontal: 30,
               marginVertical: 10,
             }}
-            s
             keyboardType="number-pad"
+            onChangeText={(text) => setCode(text)}
+            defaultValue="12345"
           />
           <TouchableOpacity
-            // onPress={() => {
-            //   if (code == "12345" && number === "0558691496") {
-            //     navigation.push("general");
-            //   } else {
-            //     Alert.alert(
-            //       "Authentication",
-            //       "Incorrect Information Provided",
-            //       {
-            //         text: "OK",
-            //         onPress: () => navigation.goBack(),
-            //       }
-            //     );
-            //   }
-            // }}
-            onPress={() => {
-              navigation.push("general");
-            }}
+            onPress={() => signIn()}
             style={{
               height: 40,
               backgroundColor: "#000",

@@ -6,7 +6,7 @@ import VitalScreen from "../screen/VitalScreens/vitalStackScreen";
 import SettingScreen from "../screen/SettingScreens/setttingStackScreen";
 import { Home, Settings, Vitals, Report } from "../component/tabBarIcons";
 const Tabs = createBottomTabNavigator();
-const BottomTab = ({ route }) => {
+const BottomTab = () => {
   return (
     <Tabs.Navigator
       tabBarOptions={{ labelStyle: { color: "#666", fontWeight: "700" } }}

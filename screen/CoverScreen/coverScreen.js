@@ -1,12 +1,24 @@
 import React, { useState, useContext } from "react";
-import { View, Text, ImageBackground, TextInput } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { View, Text, ImageBackground, TextInput, Alert } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Auth } from "../../HOC/auth";
 
 const CoverScreen = ({ navigation }) => {
   const [tex, setText] = useState("");
-  const [setNumber] = useContext(Auth);
+  const { setNumber } = useContext(Auth);
+
+  const setVerification = () => {
+    if (tex == "0558691496") {
+      setNumber(tex);
+      navigation.push("verification");
+    } else {
+      Alert.alert("Authentication", "Phone number should be 0558691496 ", {
+        text: "OK",
+        onPress: () => navigation.goBack(),
+      });
+    }
+  };
+
   return (
     <View style={{ flex: 1 }}>
       <ImageBackground
@@ -60,12 +72,10 @@ const CoverScreen = ({ navigation }) => {
               placeholder="Phone Number"
               keyboardType="number-pad"
               onChangeText={(text) => setText(text)}
+              defaultValue="0558691496"
             />
             <TouchableOpacity
-              onPress={() => {
-                setNumber(tex);
-                navigation.push("verification");
-              }}
+              onPress={() => setVerification()}
               style={{
                 height: 35,
                 backgroundColor: "#677180",

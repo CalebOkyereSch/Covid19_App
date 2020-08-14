@@ -6,7 +6,7 @@ import { Auth } from "../../HOC/auth";
 import { general } from "../../data";
 import isEmpty from "../../isEmpty";
 const GeneralInfo = () => {
-  const [setLog] = useContext(Auth);
+  const { setLog } = useContext(Auth);
   return (
     <View style={{ flex: 1 }}>
       <View

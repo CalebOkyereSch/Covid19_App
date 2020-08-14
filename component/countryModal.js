@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Ionicons } from "@expo/vector-icons";
 import {
   View,
   Text,
@@ -8,12 +9,10 @@ import {
   ScrollView,
   ActivityIndicator,
 } from "react-native";
-import { useQuery } from "@apollo/react-hooks";
-import { countryFlag } from "../controllers/graphql/queries/queries";
 import isEmpty from "../isEmpty";
-const CountryModal = ({ openKey, findId }) => {
+const CountryModal = ({ openKey, findId, data }) => {
   const [isVisible, setVisible] = useState(false);
-  const { loading, data } = useQuery(countryFlag, { client: countries });
+
   return (
     <Modal visible={isVisible} presentationStyle="formSheet">
       <View
@@ -28,7 +27,7 @@ const CountryModal = ({ openKey, findId }) => {
             <Ionicons name="ios-close" size={40} />
           </TouchableOpacity>
         </View>
-        {loading || isEmpty(data) ? (
+        {isEmpty(data) ? (
           <View
             style={{
               marginTop: 200,
@@ -41,11 +40,11 @@ const CountryModal = ({ openKey, findId }) => {
         ) : (
           <View style={{ marginTop: 50 }}>
             <ScrollView>
-              {data.countries.map((item, index) => (
+              {data.data.map((item, index) => (
                 <View key={index}>
                   <TouchableOpacity
                     onPress={() => {
-                      findId(item.countryInfo._id);
+                      findId(item.name);
                     }}
                     style={{
                       flexDirection: "row",
@@ -54,11 +53,11 @@ const CountryModal = ({ openKey, findId }) => {
                     }}
                   >
                     <Image
-                      source={{ uri: item.countryInfo.flag }}
+                      source={{ uri: item.flag }}
                       style={{ width: 20, height: 20 }}
                       resizeMode="contain"
                     />
-                    <Text>{item.country} </Text>
+                    <Text>{item.name} </Text>
                   </TouchableOpacity>
                 </View>
               ))}

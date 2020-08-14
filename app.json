@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Covid19_App",
-    "slug": "Covid19_App",
+    "name": "COVERS",
+    "slug": "COVERS",
     "platforms": [
       "ios",
       "android",
@@ -24,7 +24,7 @@
     "ios": {
       "supportsTablet": true
     },
-    "description": "",
+    "description": "Solutions to exams ",
     "githubUrl": "https://github.com/CalebOkyereSch/Covid19_App.git"
   }
 }
